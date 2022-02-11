@@ -65,13 +65,14 @@ export default defineComponent({
   background-color: #fff;
 
   &__nav {
-    width: 70%;
+    width: 50%;
     max-width: 960px;
     margin: 0 auto;
 
     & > li {
       display: inline-block;
       white-space: nowrap;
+      margin: 0 16px;
       cursor: pointer;
       &.active {
         border-bottom: 1px solid #000;
@@ -79,18 +80,11 @@ export default defineComponent({
     }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 992px) {
     .app-topbar__nav {
+      width: 70%;
       & > li {
         margin: 0 10px;
-      }
-    }
-  }
-
-  @media only screen and (min-width: 768px) {
-    .app-topbar__nav {
-      & > li {
-        margin: 0 16px;
       }
     }
   }

@@ -45,6 +45,7 @@ export default defineComponent({
     &__container {
       position: relative;
       height: calc(100% - 70px);
+      width: 50%;
       max-width: 960px;
       margin: 0 auto;
       margin-bottom: 10px;
@@ -66,44 +67,40 @@ export default defineComponent({
     &__left, &__right {
       position: absolute;
       top: 0;
-      width: 350px;
+      width: 300px;
     }
 
     &__left {
-      left: -360px;
+      left: -10px;
+      transform: translateX(-100%);
       height: 350px;
       background-color: #fff;
     }
 
     &__right {
-      right: -360px;
+      right: -10px;
+      transform: translateX(100%);
 
       &-category {
         width: 100%;
-        height: 400px;
+        height: 300px;
         margin-bottom: 10px;
         background-color: #fff;
       }
 
       &-tag {
         width: 100%;
-        height: 300px;
+        height: 200px;
         background-color: #fff;
       }
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 992px) {
       .page-layout__container {
         width: 100%
       }
       .page-layout__left, .page-layout__right {
         display: none;
-      }
-    }
-
-    @media only screen and (min-width: 768px) {
-     .page-layout__container {
-        width: 70%;
       }
     }
   }
