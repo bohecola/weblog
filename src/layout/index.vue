@@ -5,7 +5,14 @@
     </div>
 
     <div class="page-layout__container">
-      <div class="page-layout__left"></div>
+      <div class="page-layout__left">
+        <img
+          class="avatar"
+          :src="userInfo.avatar"
+          :alt="userInfo.name"
+        />
+        <div class="username">{{ userInfo.username }}</div>
+      </div>
 
       <div class="page-layout__view" v-if="true">
         <router-view></router-view>
@@ -20,13 +27,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, reactive } from "vue";
 import Topbar from './topbar/index.vue';
+import { getUserInfo } from '@/api/common';
 
 export default defineComponent({
   name: 'Layout',
   components: {
     Topbar
+  },
+  setup() {
+
+    const userInfo = reactive({});
+
+    onMounted(async () => {
+      const res = await getUserInfo();
+      Object.assign(userInfo, res.data);
+    });
+
+    return {
+      userInfo
+    }
   }
 })
 </script>
@@ -71,10 +92,23 @@ export default defineComponent({
     }
 
     &__left {
+      text-align: center;
       left: -10px;
       transform: translateX(-100%);
       height: 350px;
       background-color: #fff;
+
+      .avatar {
+        margin: 40px 0 10px;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .username {
+        color: #999;
+      }
     }
 
     &__right {

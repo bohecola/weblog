@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'http://localhost:3000/api/weblog';
 axios.defaults.timeout = 5000;
 
 axios.interceptors.request.use(
@@ -14,7 +14,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (res: AxiosResponse) => {
-    return res; 
+    return res.data; 
   },
   
   error => {
