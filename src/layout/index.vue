@@ -6,12 +6,7 @@
 
     <div class="page-layout__container">
       <div class="page-layout__left">
-        <img
-          class="avatar"
-          :src="userInfo.avatar"
-          :alt="userInfo.name"
-        />
-        <div class="username">{{ userInfo.username }}</div>
+        <user-info />
       </div>
 
       <div class="page-layout__view" v-if="true">
@@ -27,27 +22,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from "vue";
+import { defineComponent } from 'vue';
 import Topbar from './topbar/index.vue';
-import { getUserInfo } from '@/api/common';
+import UserInfo from '@/components/side/info.vue'
 
 export default defineComponent({
   name: 'Layout',
   components: {
-    Topbar
+    Topbar,
+    UserInfo
   },
   setup() {
-
-    const userInfo = reactive({});
-
-    onMounted(async () => {
-      const res = await getUserInfo();
-      Object.assign(userInfo, res.data);
-    });
-
-    return {
-      userInfo
-    }
+    return {}
   }
 })
 </script>
@@ -97,18 +83,6 @@ export default defineComponent({
       transform: translateX(-100%);
       height: 350px;
       background-color: #fff;
-
-      .avatar {
-        margin: 40px 0 10px;
-        height: 80px;
-        width: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      .username {
-        color: #999;
-      }
     }
 
     &__right {
