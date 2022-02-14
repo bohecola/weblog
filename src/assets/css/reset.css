@@ -10,11 +10,14 @@ ul {
 }
 
 *::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
+	width: 6px;
+	height: 6px;
+	border-radius: 3px;
+	background-color: rgba(144, 147, 153, 0.1);
 }
 
 *::-webkit-scrollbar-thumb {
+	border-radius: 3px;
 	background-color: rgba(144, 147, 153, 0.3);
 }
 

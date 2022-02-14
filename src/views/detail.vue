@@ -3,22 +3,21 @@
     <div class="page-detail__head">
       <h2 class="page-detail__title">{{ article.title }}</h2>
       <div class="page-detail__info">
-        <div class="article-category">
-          <el-icon><paperclip /></el-icon>
-          <span class="article-category-text">{{ article.category }}</span>
-        </div>
-        <div class="article-tags">
-          <el-icon><price-tag /></el-icon>
-          <template v-for="(tag, index) in article.tags" :key="tag.name">
-            <span class="article-tags-text">
-              {{ tag.name }}
-            </span>
-            <span v-if="index + 1 !== article.tags.length">,</span>
-          </template>
-        </div>
+        <el-icon><paperclip /></el-icon>
+        <span class="article-category">{{ article.category }}</span>
+
+        <el-icon><price-tag /></el-icon>
+        <template v-for="(tag, index) in article.tags" :key="tag.name">
+          <span class="article-tags">
+            {{ tag.name }}
+          </span>
+          <span v-if="index + 1 !== article.tags.length">,</span>
+        </template>
       </div>
     </div>
-    <v-md-preview :text="article.content"></v-md-preview>
+    <div class="page-detail__content">
+      <v-md-preview :text="article.content"></v-md-preview>
+    </div>
   </div>
 </template>
 
@@ -48,32 +47,48 @@ export default defineComponent({
 <style lang="scss" scoped>
   .page-detail {
     &__head {
+      height: 64px;
       margin-bottom: 16px;
-      padding-bottom: 5px;
+      box-sizing: border-box;
       border-bottom: 1px solid #f2f2f2;
     }
     &__title {
-      font-weight: 600;
-      font-size: 26px;
       margin: 0;
-      padding-bottom: 5px;
+      font-size: 26px;
+      line-height: 26px;
+      color: #333;
+      font-weight: normal;
     }
 
     &__info {
       display: flex;
       align-items: center;
+      font-weight: lighter;
+      margin-top: 14px;
       font-size: 14px;
+      line-height: 14px;
       color: #999;
+
+      & > i {
+        margin-right: 5px;
+      }
+
       .article-category, .article-tags {
-        display: flex;
-        align-items: center;
+        cursor: pointer;
+        &:hover { color: #666; }
+      }
+      .article-category {
         margin-right: 10px;
-        &-text {
-          cursor: pointer;
-        }
-        & > i {
-          margin-right: 5px;
-        }
+      }
+    }
+
+    &__content {
+      height: calc(100% - 80px);
+      word-break: break-all;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        display: none;
       }
     }
     ::v-deep .vuepress-markdown-body:not(.custom) {

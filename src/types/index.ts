@@ -1,5 +1,5 @@
 interface IUserInfo {
-  username: string,
+  name: string,
   avatar: string,
   desc: string
 }

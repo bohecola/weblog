@@ -24,7 +24,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Topbar from './topbar/index.vue';
-import UserInfo from '@/components/side/info.vue'
+import UserInfo from '@/components/sider/info.vue'
 
 export default defineComponent({
   name: 'Layout',
