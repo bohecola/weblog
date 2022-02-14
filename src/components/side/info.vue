@@ -22,12 +22,12 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import { getUserInfo } from '@/api/common';
-import { UserInfo } from '@/types';
+import { IUserInfo } from '@/types';
 
 export default defineComponent({
   name: 'info',
   setup() {
-    const userInfo: UserInfo = reactive({
+    const userInfo: IUserInfo = reactive({
       username: '',
       avatar: '',
       desc: ''

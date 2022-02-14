@@ -63,9 +63,9 @@ export default defineComponent({
     &__view {
       height: 100%;
       width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
+      padding: 20px;
       overflow: hidden;
+      box-sizing: border-box;
 
       & > div {
         height: 100%;

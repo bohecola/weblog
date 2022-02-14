@@ -21,7 +21,7 @@ export function getTagList() {
   });
 }
 
-export function getArticleDetail(param: string) {
+export function getArticleOne(param: string) {
   return request({
     url: `/articles/${param}`,
     method: 'get',
