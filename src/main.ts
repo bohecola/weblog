@@ -20,11 +20,7 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import Prism from 'prismjs';
 
 VMdPreview.use(vuepressTheme, {
-  Prism,
-  extend(md: any) {
-    // md为 markdown-it 实例，可以在此处进行修改配置,并使用 plugin 进行语法扩展
-    // md.set(option).use(plugin);
-  }
+  Prism
 });
 
 library.add(fab);

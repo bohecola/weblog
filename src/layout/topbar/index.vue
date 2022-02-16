@@ -74,7 +74,11 @@ export default defineComponent({
       white-space: nowrap;
       margin: 0 16px;
       cursor: pointer;
-      &.active {
+      // &.active {
+      //   border-bottom: 1px solid #000;
+      // }
+
+      &:hover {
         border-bottom: 1px solid #000;
       }
     }

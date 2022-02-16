@@ -14,8 +14,12 @@
       </div>
 
       <div class="page-layout__right">
-        <div class="page-layout__right-category"></div>
-        <div class="page-layout__right-tag"></div>
+        <div class="page-layout__right-category">
+          <category />
+        </div>
+        <div class="page-layout__right-tag">
+          <tag />
+        </div>
       </div>
     </div>
   </div>
@@ -24,13 +28,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Topbar from './topbar/index.vue';
-import UserInfo from '@/components/sider/info.vue'
+import UserInfo from '@/components/sider/info.vue';
+import Category from '@/components/sider/category.vue';
+import Tag from '@/components/sider/tag.vue';
 
 export default defineComponent({
   name: 'Layout',
   components: {
     Topbar,
-    UserInfo
+    UserInfo,
+    Category,
+    Tag
   },
   setup() {
     return {}
@@ -88,7 +96,10 @@ export default defineComponent({
     &__right {
       right: -10px;
       transform: translateX(100%);
-
+      &-category, &-tag {
+        padding: 20px;
+        box-sizing: border-box;
+      }
       &-category {
         width: 100%;
         height: 300px;

@@ -1,5 +1,6 @@
 <template>
   <div class="sider-tags">
+    <div class="sider-tags__title">标签</div>
     <div class="sider-tags__content">
       <span
         v-for="(item, index) of tags"
@@ -21,7 +22,7 @@ import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { getTagList } from '@/api/common';
 
 export default defineComponent({
-  name: 'page-tag',
+  name: 'tag',
   setup() {
     const pageData = reactive({
       tags: []
@@ -41,9 +42,15 @@ export default defineComponent({
 <style lang="scss" scoped>
   .sider-tags {
     height: 100%;
+    &__title {
+      font-size: 16px;
+      line-height: 16px;
+      margin-bottom: 16px;
+    }
     &__content {
       display: flex;
       flex-wrap: wrap;
+      height: calc(100% - 32px);
       overflow-x: hidden;
       overflow-y: auto;
     }
@@ -52,10 +59,10 @@ export default defineComponent({
       cursor: pointer;
       margin-right: 6px;
       margin-bottom: 6px;
-      padding: 0 9px;
+      padding: 0 4px;
       font-size: 12px;
-      height: 28px;
-      line-height: 28px;
+      height: 18px;
+      line-height: 18px;
       border-radius: 2px;
       &::before {
         position: absolute;

@@ -23,16 +23,15 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
-import { RouteLocationNormalizedLoaded, Router, useRoute, useRouter } from "vue-router";
+import { RouteLocationNormalizedLoaded, useRoute } from "vue-router";
 import { getArticleOne } from '@/api/common';
-import { IArticle } from '@/types';
+// import { IArticle } from '@/types';
 
 export default defineComponent({
   name: 'detail',
   setup() {
     const article = reactive({});
-    const route = useRoute();
-    const router = useRouter();
+    const route: RouteLocationNormalizedLoaded = useRoute();
     onMounted(async () => {
       const res = await getArticleOne(route.params.id as string);
       Object.assign(article, res.data);
