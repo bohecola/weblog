@@ -26,11 +26,11 @@ export default defineComponent({
       },
       {
         name: '分类',
-        path: '/category'
+        path: '/categories'
       },
       {
         name: '标签',
-        path: '/tag'
+        path: '/tags'
       },
       {
         name: '归档',
@@ -74,6 +74,7 @@ export default defineComponent({
       white-space: nowrap;
       margin: 0 16px;
       cursor: pointer;
+      border-bottom: 1px solid transparent;
       // &.active {
       //   border-bottom: 1px solid #000;
       // }

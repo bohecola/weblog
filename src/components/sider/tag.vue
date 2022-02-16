@@ -10,7 +10,8 @@
           border: `1px solid ${item.color}`,
           '--tagColor': item.color
         }"
-        class="sider-tags__item">
+        class="sider-tags__item"
+        @click="handleTagClick(item._id, item.name)">
         {{ item.name }}
       </span>
     </div>
@@ -20,6 +21,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { getTagList } from '@/api/common';
+import { Router, useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'tag',
@@ -30,10 +32,15 @@ export default defineComponent({
     onMounted(async () => {
       const res = await getTagList();
       pageData.tags = res.data;
-    })
+    });
+    const router: Router = useRouter();
+    const handleTagClick = (tagId: string, name: string) => {
+      router.push({ name: 'TagList', query: { tagId, name } });
+    }
 
     return {
-      ...toRefs(pageData)
+      ...toRefs(pageData),
+      handleTagClick
     };
   }
 });

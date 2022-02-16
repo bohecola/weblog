@@ -14,19 +14,21 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/home.vue')
       },
       {
-        path: '/category',
+        path: '/categories',
         component: () => import('@/views/category.vue')
       },
       {
-        path: '/category/:id',
-        component: () => import('@/views/list.vue')
-      },
-      {
-        path: '/tag',
+        path: '/tags',
         component: () => import('@/views/tag.vue')
       },
       {
-        path: '/tag/:id',
+        name: 'CategoryList',
+        path: '/category',
+        component: () => import('@/views/list.vue')
+      },
+      {
+        name: 'TagList',
+        path: '/tag',
         component: () => import('@/views/list.vue')
       },
       {

@@ -1,7 +1,7 @@
 <template>
   <div class="page-list">
-    <div class="page-list__tip-board">{{ type === 'category' ? '分类' : '标签' }}</div>
-    <div class="page-list__list">
+    <div class="page-list__tip-board">{{ $route.query.name }}</div>
+    <div class="page-list__list" v-loading="loading">
       <div class="article" v-for="item of list" :key="item._id" @click="toDetail(item._id)">
         <h1 class="article-title">{{ item.title }}</h1>
         <div class="article-info">
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue';
+import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue';
 import { Router, useRouter, useRoute } from 'vue-router';
 import { getArticleList } from '@/api/common';
 import { IArticle } from '@/types';
@@ -40,8 +40,7 @@ export default defineComponent({
   name: 'List',
   setup() {
     interface IPageData {
-      list: Array<IArticle>,
-      type?: string
+      list: Array<IArticle>
     }
     const pageData: IPageData = reactive({
       list: []
@@ -49,16 +48,21 @@ export default defineComponent({
     const router: Router = useRouter();
     const route = useRoute();
 
+    let loading = ref(false);
+
     watch(() => route, async (newVal) => {
-      
-      if (newVal.path.includes('category')) {
-        const res = await getArticleList({ 'category': newVal.params.id });
-        pageData.list = res.data;
-        pageData.type = 'category';
-      } else if (newVal.path.includes('tag')) {
-        const res = await getArticleList({ 'tag': newVal.params.id });
-        pageData.list = res.data;
-        pageData.type = 'tag';
+      loading.value = true;
+      try {
+        if (newVal.path.includes('category')) {
+          const res = await getArticleList({ 'category': newVal.query.categoryId });
+          pageData.list = res.data;
+        } else if (newVal.path.includes('tag')) {
+          const res = await getArticleList({ 'tag': newVal.query.categoryId });
+          pageData.list = res.data;
+        }
+        loading.value = false;
+      } catch(err) {
+        loading.value = false;
       }
     }, { deep: true })
 
@@ -73,6 +77,7 @@ export default defineComponent({
 
     return {
       ...toRefs(pageData),
+      loading,
       toDetail
     }
   }
@@ -88,6 +93,9 @@ export default defineComponent({
   }
 
   &__list {
+    height: calc(100% - 32px);
+    overflow-x: hidden;
+    overflow-y: auto;
     .article {
       display: flex;
       flex-direction: column;

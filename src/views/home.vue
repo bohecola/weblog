@@ -74,6 +74,9 @@ export default defineComponent({
   }
 
   &__list {
+    height: calc(100% - 32px);
+    overflow-x: hidden;
+    overflow-y: auto;
     .article {
       display: flex;
       flex-direction: column;

@@ -4,11 +4,15 @@
       <h2 class="page-detail__title">{{ article.title }}</h2>
       <div class="page-detail__info">
         <el-icon><paperclip /></el-icon>
-        <span class="article-category">{{ article.category }}</span>
+        <span
+          @click="$router.push({ name: 'CategoryList', query: { categoryId: article.category._id, name: article.category.name } })"
+          class="article-category">
+          {{ article.category?.name }}
+        </span>
 
         <el-icon><price-tag /></el-icon>
         <template v-for="(tag, index) in article.tags" :key="tag.name">
-          <span class="article-tags">
+          <span class="article-tags" @click="$router.push({ name: 'TagList', query: { tagId: tag._id, name: tag.name } })">
             {{ tag.name }}
           </span>
           <span v-if="index + 1 !== article.tags.length">,</span>

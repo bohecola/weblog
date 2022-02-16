@@ -5,7 +5,7 @@
       <li
         v-for="(item, index) of categories"
         :key="index"
-        @click="handleCategoryClick(item._id)"
+        @click="handleCategoryClick(item._id, item.name)"
         class="sider-category__item">
         <span class="sider-category__item-text">{{ item.name }}</span>
         <span class="sider-category__item-num">{{ `(${item.articles && item.articles.length })` }}</span>
@@ -30,8 +30,8 @@ export default defineComponent({
       pageData.categories = res.data;
     });
     const router: Router = useRouter();
-    const handleCategoryClick = (id: string) => {
-      router.push(`/category/${id}`);
+    const handleCategoryClick = (categoryId: string, name: string) => {
+      router.push({ name: 'CategoryList', query: { categoryId, name } });
     }
 
     return {
