@@ -1,9 +1,10 @@
 import request from '@/service/request';
 
-export function getArticleList() {
+export function getArticleList(param?: any) {
   return request({
     url: '/articles',
-    method: 'get'
+    method: 'get',
+    params: param
   });
 }
 

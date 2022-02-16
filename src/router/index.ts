@@ -18,8 +18,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/category.vue')
       },
       {
+        path: '/category/:id',
+        component: () => import('@/views/list.vue')
+      },
+      {
         path: '/tag',
         component: () => import('@/views/tag.vue')
+      },
+      {
+        path: '/tag/:id',
+        component: () => import('@/views/list.vue')
       },
       {
         path: '/archive',

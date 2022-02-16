@@ -5,6 +5,7 @@
       <li
         v-for="(item, index) of categories"
         :key="index"
+        @click="handleCategoryClick(item._id)"
         class="sider-category__item">
         <span class="sider-category__item-text">{{ item.name }}</span>
         <span class="sider-category__item-num">{{ `(${item.articles && item.articles.length })` }}</span>
@@ -15,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { Router, useRouter } from 'vue-router';
 import { getCategoryList } from '@/api/common';
 
 export default defineComponent({
@@ -26,10 +28,15 @@ export default defineComponent({
     onMounted(async () => {
       const res = await getCategoryList();
       pageData.categories = res.data;
-    })
+    });
+    const router: Router = useRouter();
+    const handleCategoryClick = (id: string) => {
+      router.push(`/category/${id}`);
+    }
 
     return {
-      ...toRefs(pageData)
+      ...toRefs(pageData),
+      handleCategoryClick
     };
   }
 });
