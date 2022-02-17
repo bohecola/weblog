@@ -7,6 +7,12 @@ export function getArticleList(param?: any) {
     params: param
   });
 }
+export function getArchiveList() {
+  return request({
+    url: '/archive',
+    method: 'get'
+  });
+}
 
 export function getCategoryList() {
   return request({

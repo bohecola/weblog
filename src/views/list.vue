@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue';
-import { Router, useRouter, useRoute } from 'vue-router';
+import { Router, useRouter, RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { getArticleList } from '@/api/common';
 import { IArticle } from '@/types';
 
@@ -47,28 +47,31 @@ export default defineComponent({
     });
     const router: Router = useRouter();
     const route = useRoute();
-
     let loading = ref(false);
 
-    watch(() => route, async (newVal) => {
-      loading.value = true;
+    async function fetchData(route: RouteLocationNormalizedLoaded) {
       try {
-        if (newVal.path.includes('category')) {
-          const res = await getArticleList({ 'category': newVal.query.categoryId });
+        if (route.path.includes('category')) {
+          const res = await getArticleList({ 'category': route.query.categoryId });
           pageData.list = res.data;
-        } else if (newVal.path.includes('tag')) {
-          const res = await getArticleList({ 'tag': newVal.query.categoryId });
+        } else if (route.path.includes('tag')) {
+          const res = await getArticleList({ 'tag': route.query.tagId });
           pageData.list = res.data;
         }
         loading.value = false;
       } catch(err) {
         loading.value = false;
       }
-    }, { deep: true })
+    }
+
+    watch(() => route, async (newVal) => {
+      loading.value = true;
+      fetchData(newVal);
+    }, { deep: true });
 
     onMounted(async () => {
-      const res = await getArticleList();
-      pageData.list = res.data;
+      loading.value = true;
+      fetchData(route);
     });
 
     const toDetail = (id: string): void => {
