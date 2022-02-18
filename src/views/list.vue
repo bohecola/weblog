@@ -1,7 +1,7 @@
 <template>
-  <div class="page-list">
-    <div class="page-list__tip-board">{{ $route.query.name }}</div>
-    <div class="page-list__list" v-loading="loading">
+  <div v-loading="loading" class="page-list">
+    <div v-if="!loading" class="page-list__tip-board">{{ $route.query.name }}</div>
+    <div class="page-list__list">
       <div class="article" v-for="item of list" :key="item._id" @click="toDetail(item._id)">
         <h1 class="article-title">{{ item.title }}</h1>
         <div class="article-info">

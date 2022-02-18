@@ -1,5 +1,5 @@
 <template>
-  <div class="sider-tags">
+  <div v-loading="loading" class="sider-tags">
     <div class="sider-tags__content">
       <span
         v-for="(item, index) of tags"
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
 import { getTagList } from '@/api/common';
 import { Router, useRouter } from 'vue-router';
 
@@ -28,9 +28,17 @@ export default defineComponent({
     const pageData = reactive({
       tags: []
     });
+    let loading = ref(false);
     onMounted(async () => {
-      const res = await getTagList();
-      pageData.tags = res.data;
+      try {
+        loading.value = true;
+        const res = await getTagList();
+        pageData.tags = res.data
+        loading.value = false;
+      } catch(err) {
+        console.log(err);
+        loading.value = false;
+      }
     });
     const router: Router = useRouter();
     const handleTagClick = (tagId: string, name: string) => {
@@ -39,6 +47,7 @@ export default defineComponent({
 
     return {
       ...toRefs(pageData),
+      loading,
       handleTagClick
     };
   }

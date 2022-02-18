@@ -1,5 +1,5 @@
 <template>
-  <div class="page-archive">
+  <div v-loading="loading" class="page-archive">
     <div 
       class="year-wrap"
       v-for="(yearItem, yearIndex) in list"
@@ -42,7 +42,7 @@
 <script lang="ts">
 import { getArchiveList } from '@/api/common';
 import { IArchiveYearItem } from '@/types';
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
 import { Router, useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -54,10 +54,18 @@ export default defineComponent({
     const pageData:IPageData = reactive({
       list: []
     });
-  
+    
+    let loading = ref(false);
     onMounted(async () => {
-      const res = await getArchiveList();
-      pageData.list = res.data;
+      try {
+        loading.value = true;
+        const res = await getArchiveList();
+        pageData.list = res.data;
+        loading.value = false;
+      } catch (err) {
+        console.log(err);
+        loading.value = false;
+      }
     });
     const router: Router = useRouter();
     const toDetail = (id: string) => {
@@ -66,6 +74,7 @@ export default defineComponent({
 
     return {
       ...toRefs(pageData),
+      loading,
       toDetail
     }
   }

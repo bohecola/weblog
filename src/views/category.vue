@@ -1,5 +1,5 @@
 <template>
-  <div class="sider-category">
+  <div v-loading="loading" class="sider-category">
     <ul class="sider-category__content">
       <li
         v-for="(item, index) of categories"
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
 import { Router, useRouter } from 'vue-router';
 import { getCategoryList } from '@/api/common';
 
@@ -24,9 +24,17 @@ export default defineComponent({
     const pageData = reactive({
       categories: []
     });
+    let loading = ref(false);
     onMounted(async () => {
-      const res = await getCategoryList();
-      pageData.categories = res.data;
+      try {
+        loading.value = true;
+        const res = await getCategoryList();
+        pageData.categories = res.data
+        loading.value = false;
+      } catch(err) {
+        console.log(err);
+        loading.value = false;
+      }
     });
     const router: Router = useRouter();
     const handleCategoryClick = (categoryId: string, name: string) => {
@@ -36,6 +44,7 @@ export default defineComponent({
 
     return {
       ...toRefs(pageData),
+      loading,
       handleCategoryClick
     };
   }

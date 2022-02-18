@@ -1,6 +1,6 @@
 <template>
-  <div class="page-home">
-    <div class="page-home__tip-board">最近</div>
+  <div v-loading="loading" class="page-home">
+    <div v-if="!loading" class="page-home__tip-board">最近</div>
     <div class="page-home__list">
       <div class="article" v-for="item of list" :key="item._id" @click="toDetail(item._id)">
         <h1 class="article-title">{{ item.title }}</h1>
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
 import { Router, useRouter } from 'vue-router';
 import { getArticleList } from '@/api/common';
 import { IArticle } from '@/types';
@@ -47,9 +47,17 @@ export default defineComponent({
       list: []
     });
 
+    let loading = ref(false);
     onMounted(async () => {
-      const res = await getArticleList();
-      pageData.list = res.data
+      try {
+        loading.value = true;
+        const res = await getArticleList();
+        pageData.list = res.data
+        loading.value = false;
+      } catch(err) {
+        console.log(err);
+        loading.value = false;
+      }
     });
 
     const router: Router = useRouter();
@@ -59,6 +67,7 @@ export default defineComponent({
 
     return {
       ...toRefs(pageData),
+      loading,
       toDetail
     }
   }

@@ -1,6 +1,6 @@
 <template>
-  <div class="page-detail">
-    <div class="page-detail__head">
+  <div v-loading="loading" class="page-detail">
+    <div v-if="!loading" class="page-detail__head">
       <h2 class="page-detail__title">{{ article.title }}</h2>
       <div class="page-detail__info">
         <el-icon><paperclip /></el-icon>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from 'vue';
+import { defineComponent, onMounted, reactive, ref } from 'vue';
 import { RouteLocationNormalizedLoaded, useRoute } from "vue-router";
 import { getArticleOne } from '@/api/common';
 // import { IArticle } from '@/types';
@@ -36,12 +36,21 @@ export default defineComponent({
   setup() {
     const article = reactive({});
     const route: RouteLocationNormalizedLoaded = useRoute();
+    let loading = ref(false);
     onMounted(async () => {
-      const res = await getArticleOne(route.params.id as string);
-      Object.assign(article, res.data);
+      try {
+        loading.value = true;
+        const res = await getArticleOne(route.params.id as string);
+        Object.assign(article, res.data);
+        loading.value = false;
+      } catch (err) {
+        console.log(err);
+        loading.value = false;
+      }
     })
     return {
-      article
+      article,
+      loading
     }
   }
 });
