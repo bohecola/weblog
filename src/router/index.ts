@@ -53,7 +53,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title  = 'Canday\'s site';
+  document.title  = 'Canday\'s Blog';
   next();
 })
 
