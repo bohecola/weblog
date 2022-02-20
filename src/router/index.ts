@@ -52,4 +52,10 @@ const router = createRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  document.title  = 'Canday\'s site';
+  next();
+})
+
+
 export default router;
