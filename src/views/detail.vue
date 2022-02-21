@@ -10,7 +10,7 @@
           {{ article.category?.name }}
         </span>
 
-        <el-icon><price-tag /></el-icon>
+        <el-icon v-if="article.tags.length > 0"><price-tag /></el-icon>
         <template v-for="(tag, index) in article.tags" :key="tag.name">
           <span class="article-tags" @click="$router.push({ name: 'TagList', query: { tagId: tag._id, name: tag.name } })">
             {{ tag.name }}
