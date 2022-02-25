@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const dev = 'http://localhost:3000/api/weblog'
-const prod = 'https://canday.site:3000/api/weblog'
+const dev = 'http://localhost:3001/api/weblog';
+const prod = 'https://canday.site:3000/api/weblog';
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? dev : prod;
 axios.defaults.timeout = 5000;

@@ -75,9 +75,6 @@ export default defineComponent({
       margin: 0 16px;
       cursor: pointer;
       border-bottom: 1px solid transparent;
-      // &.active {
-      //   border-bottom: 1px solid #000;
-      // }
 
       &:hover {
         border-bottom: 1px solid #000;
@@ -87,6 +84,7 @@ export default defineComponent({
 
   @media only screen and (max-width: 992px) {
     .app-topbar__nav {
+      text-align: center;
       width: 70%;
       & > li {
         margin: 0 10px;

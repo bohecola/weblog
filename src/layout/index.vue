@@ -4,6 +4,11 @@
       <topbar />
     </div>
 
+    <div class="page-layout__icp">
+      <a href="https://beian.miit.gov.cn" target="_blank">陕ICP备2022001579号-1</a>
+      <!-- <a href="http://www.beian.gov.cn" target="_blank">陕公网安备 号</a> -->
+    </div>
+
     <div class="page-layout__container">
       <div class="page-layout__left">
         <user-info />
@@ -55,6 +60,23 @@ export default defineComponent({
 
     &__topbar {
       margin-bottom: 10px;
+    }
+
+    &__icp {
+      position: fixed;
+      padding: 10px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+
+      & > a {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+        color: #999;
+        text-decoration: none;
+      }
     }
 
     &__container {

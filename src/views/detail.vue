@@ -10,7 +10,7 @@
           {{ article.category?.name }}
         </span>
 
-        <el-icon v-if="article.tags.length > 0"><price-tag /></el-icon>
+        <el-icon v-if="article.tags"><price-tag /></el-icon>
         <template v-for="(tag, index) in article.tags" :key="tag.name">
           <span class="article-tags" @click="$router.push({ name: 'TagList', query: { tagId: tag._id, name: tag.name } })">
             {{ tag.name }}
@@ -103,15 +103,9 @@ export default defineComponent({
         display: none;
       }
     }
-    ::v-deep .vuepress-markdown-body:not(.custom) {
+    :deep(.vuepress-markdown-body:not(.custom)) {
       padding: 0;
       img {
-        // display: block;
-        // margin-top: 16px;
-        // margin-bottom: 16px;
-        // margin-left: auto;
-        // margin-right: auto;
-        // box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
         max-width: calc(100% - 16px);
       }
     }

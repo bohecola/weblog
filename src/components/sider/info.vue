@@ -54,6 +54,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .side-info {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
