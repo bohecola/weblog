@@ -66,8 +66,7 @@ export default defineComponent({
       position: fixed;
       padding: 10px;
       bottom: 0;
-      left: 0;
-      width: 100%;
+      right: 0;
       box-sizing: border-box;
 
       & > a {
