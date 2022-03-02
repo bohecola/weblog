@@ -1,28 +1,29 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
 
 const dev = 'http://localhost:3001/api/weblog';
 const prod = 'https://canday.site:3000/api/weblog';
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? dev : prod;
-axios.defaults.timeout = 5000;
+const service = axios.create({
+  baseURL: process.env.NODE_ENV === 'development' ? dev : prod,
+  timeout: 5000
+});
 
 axios.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config) => {
     return config;
   },
-  error => {
-    return Promise.reject(error);
+  (error) => {
+    Promise.reject(error);
   }
 );
 
 axios.interceptors.response.use(
-  (res: AxiosResponse) => {
+  (res) => {
     return res.data; 
   },
-  
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );
 
-export default axios;
+export default service;

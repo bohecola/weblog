@@ -1,43 +1,42 @@
 import request from '@/service/request';
 
-export function getArticleList(param?: any) {
-  return request({
+export const getArticleList = (params?: any) => 
+  request({
     url: '/articles',
     method: 'get',
-    params: param
-  });
-}
-export function getArchiveList() {
-  return request({
+    params
+  })
+
+export const getArchiveList = () =>
+  request({
     url: '/archive',
     method: 'get'
-  });
-}
+  })
 
-export function getCategoryList() {
-  return request({
+
+export const getCategoryList = () => 
+  request({
     url: '/category',
     method: 'get'
-  });
-}
+  })
 
-export function getTagList() {
-  return request({
+
+export const getTagList = () => 
+  request({
     url: '/tags',
     method: 'get'
-  });
-}
+  })
 
-export function getArticleOne(param: string) {
-  return request({
+
+export const getArticleOne = (param: string) => 
+  request({
     url: `/articles/${param}`,
     method: 'get',
-  });
-}
+  })
 
-export function getUserInfo() {
-  return request({
+
+export const getUserInfo = () => 
+  request({
     url: '/me',
     method: 'get'
   })
-}
