@@ -8,7 +8,7 @@
 
           <div class="article-date">
             <el-icon style="margin-bottom: 1px"><calendar /></el-icon>
-            <!-- {{ item.createdAt.slice(0, 10) }} -->
+            {{ item.createdAt.slice(0, 10) }}
           </div>
 
           <div class="article-category">
