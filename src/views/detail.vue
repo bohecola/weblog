@@ -5,14 +5,14 @@
       <div class="page-detail__info">
         <el-icon v-if="article.category"><paperclip /></el-icon>
         <span
-          @click="$router.push({ name: 'CategoryList', query: { categoryId: article.category._id, name: article.category.name } })"
+          @click="$router.push({name: 'CategoryList', query: {categoryId: article.category._id, name: article.category.name}})"
           class="article-category">
-          {{ article.category?.name }}
+          {{ article.category.name }}
         </span>
 
         <el-icon v-if="article.tags"><price-tag /></el-icon>
         <template v-for="(tag, index) in article.tags" :key="tag.name">
-          <span class="article-tags" @click="$router.push({ name: 'TagList', query: { tagId: tag._id, name: tag.name } })">
+          <span class="article-tags" @click="$router.push({name: 'TagList', query: {tagId: tag._id, name: tag.name}})">
             {{ tag.name }}
           </span>
           <span v-if="index + 1 !== article.tags.length">,</span>
@@ -29,19 +29,31 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue';
 import { RouteLocationNormalizedLoaded, useRoute } from "vue-router";
 import { getArticleOne } from '@/api/common';
-// import { IArticle } from '@/types';
+import { IGetAritcleDetail } from '@/types';
 
 export default defineComponent({
   name: 'detail',
   setup() {
-    const article = reactive({});
-    const route: RouteLocationNormalizedLoaded = useRoute();
+    const article: IGetAritcleDetail = reactive({
+      _id: '',
+      title: '',
+      content: '',
+      author: '',
+      category: {_id: '', name: ''},
+      tags: [{_id: '', name: '', color: ''}],
+      createdAt: '',
+      updatedAt: ''
+    });
+
     let loading = ref(false);
-    onMounted(async () => {
+
+    const route: RouteLocationNormalizedLoaded = useRoute();
+
+    onMounted(async() => {
       try {
         loading.value = true;
         const res = await getArticleOne(route.params.id as string);
-        Object.assign(article, res.data);
+        Object.assign(article, res);
         loading.value = false;
       } catch (err) {
         console.log(err);

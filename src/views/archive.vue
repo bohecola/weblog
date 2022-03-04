@@ -2,7 +2,7 @@
   <div v-loading="loading" class="page-archive">
     <div 
       class="year-wrap"
-      v-for="(yearItem, yearIndex) in list"
+      v-for="(yearItem, yearIndex) in pageData"
       :key="yearIndex">
       <div class="page-archive__year">#{{ yearItem.year }}</div>
       <div
@@ -42,38 +42,35 @@
 <script lang="ts">
 import { getArchiveList } from '@/api/common';
 import { IArchiveYearItem } from '@/types';
-import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, ref } from 'vue';
 import { Router, useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'archive',
   setup() {
-    interface IPageData {
-      list: Array<IArchiveYearItem>
-    }
-    const pageData:IPageData = reactive({
-      list: []
-    });
+
+    const pageData: Array<IArchiveYearItem> = reactive([]);
     
     let loading = ref(false);
-    onMounted(async () => {
+    onMounted(async() => {
       try {
         loading.value = true;
         const res = await getArchiveList();
-        pageData.list = res.data;
+        Object.assign(pageData, res);
         loading.value = false;
       } catch (err) {
         console.log(err);
         loading.value = false;
       }
     });
+
     const router: Router = useRouter();
     const toDetail = (id: string) => {
       router.push(`/detail/${id}`);
     }
 
     return {
-      ...toRefs(pageData),
+      pageData,
       loading,
       toDetail
     }

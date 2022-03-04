@@ -2,7 +2,7 @@
   <div v-loading="loading" class="page-home">
     <div v-if="!loading" class="page-home__tip-board">最近</div>
     <div class="page-home__list">
-      <div class="article" v-for="item of list" :key="item._id" @click="toDetail(item._id)">
+      <div class="article" v-for="item of docs" :key="item._id" @click="toDetail(item._id)">
         <h1 class="article-title">{{ item.title }}</h1>
         <div class="article-info">
 
@@ -34,25 +34,25 @@
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
 import { Router, useRouter } from 'vue-router';
 import { getArticleList } from '@/api/common';
-import { IArticle } from '@/types';
+import { IGetArticleList } from '@/types';
 
 export default defineComponent({
   name: 'Home',
   setup() {
-    interface IPageData {
-      list: Array<IArticle>
-    }
-
-    const pageData: IPageData = reactive({
-      list: []
+    const pageData: IGetArticleList = reactive({
+      docs: [],
+      total: 0,
+      limit: 15,
+      page: 1,
+      pages: 1
     });
 
     let loading = ref(false);
-    onMounted(async () => {
+    onMounted(async() => {
       try {
         loading.value = true;
         const res = await getArticleList();
-        pageData.list = res.data
+        Object.assign(pageData, res);
         loading.value = false;
       } catch(err) {
         console.log(err);

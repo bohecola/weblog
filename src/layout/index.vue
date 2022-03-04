@@ -11,7 +11,7 @@
 
     <div class="page-layout__container">
       <div class="page-layout__left">
-        <user-info />
+        <side-info />
       </div>
 
       <div class="page-layout__view" v-if="true">
@@ -20,10 +20,10 @@
 
       <div class="page-layout__right">
         <div class="page-layout__right-category">
-          <category />
+          <side-category />
         </div>
         <div class="page-layout__right-tag">
-          <tag />
+          <side-tags />
         </div>
       </div>
     </div>
@@ -32,18 +32,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Topbar from './topbar/index.vue';
-import UserInfo from '@/components/sider/info.vue';
-import Category from '@/components/sider/category.vue';
-import Tag from '@/components/sider/tag.vue';
+import Topbar from './topbar.vue';
+import SideInfo from '@/components/side-info.vue';
+import SideCategory from '@/components/side-category.vue';
+import SideTags from '@/components/side-tags.vue';
 
 export default defineComponent({
   name: 'Layout',
   components: {
     Topbar,
-    UserInfo,
-    Category,
-    Tag
+    SideInfo,
+    SideCategory,
+    SideTags
   },
   setup() {
     return {}

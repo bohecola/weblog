@@ -35,14 +35,14 @@ export default defineComponent({
       desc: ''
     });
 
-    onMounted(async () => {
+    onMounted(async() => {
       const res = await getUserInfo();
-      Object.assign(userInfo, res.data);
+      Object.assign(userInfo, res);
     });
 
     const hrefTo = (href: string): void => {
       window.open(href);
-    }
+    };
 
     return {
       userInfo,

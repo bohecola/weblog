@@ -44,7 +44,7 @@ export default defineComponent({
     const curIdx = ref(0);
     const router: Router = useRouter();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleNavClick = function (item: any, index: number): void {
+    const handleNavClick = function(item: any, index: number): void {
       curIdx.value = index;
       router.push(item.path);
     }

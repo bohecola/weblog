@@ -8,7 +8,7 @@ const service = axios.create({
   timeout: 5000
 });
 
-axios.interceptors.request.use(
+service.interceptors.request.use(
   (config) => {
     return config;
   },
@@ -17,9 +17,9 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+service.interceptors.response.use(
   (res) => {
-    return res.data; 
+    return res.data.data; 
   },
   (error) => {
     return Promise.reject(error);

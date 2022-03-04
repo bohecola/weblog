@@ -2,7 +2,7 @@
   <div v-loading="loading" class="page-list">
     <div v-if="!loading" class="page-list__tip-board">{{ $route.query.name }}</div>
     <div class="page-list__list">
-      <div class="article" v-for="item of list" :key="item._id" @click="toDetail(item._id)">
+      <div class="article" v-for="item of docs" :key="item._id" @click="toDetail(item._id)">
         <h1 class="article-title">{{ item.title }}</h1>
         <div class="article-info">
 
@@ -34,17 +34,19 @@
 import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue';
 import { Router, useRouter, RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { getArticleList } from '@/api/common';
-import { IArticle } from '@/types';
+import { IGetArticleList } from '@/types';
 
 export default defineComponent({
   name: 'List',
   setup() {
-    interface IPageData {
-      list: Array<IArticle>
-    }
-    const pageData: IPageData = reactive({
-      list: []
+    const pageData: IGetArticleList = reactive({
+      docs: [],
+      total: 0,
+      limit: 15,
+      page: 1,
+      pages: 1
     });
+
     const router: Router = useRouter();
     const route = useRoute();
     let loading = ref(false);
@@ -53,10 +55,10 @@ export default defineComponent({
       try {
         if (route.path.includes('category')) {
           const res = await getArticleList({ 'category': route.query.categoryId });
-          pageData.list = res.data;
+          Object.assign(pageData, res);
         } else if (route.path.includes('tag')) {
           const res = await getArticleList({ 'tag': route.query.tagId });
-          pageData.list = res.data;
+          Object.assign(pageData, res);
         }
         loading.value = false;
       } catch(err) {
@@ -64,12 +66,12 @@ export default defineComponent({
       }
     }
 
-    watch(() => route, async (newVal) => {
+    watch(() => route, async(newVal) => {
       loading.value = true;
       fetchData(newVal);
     }, { deep: true });
 
-    onMounted(async () => {
+    onMounted(async() => {
       loading.value = true;
       fetchData(route);
     });
