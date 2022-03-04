@@ -55,7 +55,6 @@ export default defineComponent({
         Object.assign(pageData, res);
         loading.value = false;
       } catch(err) {
-        console.log(err);
         loading.value = false;
       }
     });
