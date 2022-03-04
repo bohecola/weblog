@@ -63,12 +63,12 @@ export default defineComponent({
         margin-right: 6px;
       }
       &-text {
-        font-size: 16px;
+        font-size: 14px;
         text-decoration: underline;
         cursor: pointer;
       }
       &-num {
-        font-size: 16px;
+        font-size: 14px;
         color: #777;
       }
     }

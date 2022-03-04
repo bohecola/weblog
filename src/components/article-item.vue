@@ -36,9 +36,7 @@ export default defineComponent({
   },
   setup() {
     const router: Router = useRouter();
-    const toDetail = (id: string): void => {
-      router.push(`/detail/${id}`)
-    }
+    const toDetail = (id: string) => router.push(`/detail/${id}`);
 
     return {
       toDetail
@@ -50,7 +48,7 @@ export default defineComponent({
 <style lang="scss" scoped>
   .article-item {
     cursor: pointer;
-    padding: 10px 0;
+    padding: 12px 0;
     margin: 0;
     box-sizing: border-box;
     border-bottom: 1px solid #f2f2f2;
@@ -61,7 +59,7 @@ export default defineComponent({
 
     &__title {
       color: #333;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: normal;
       line-height: 30px;
       margin-bottom: 10px;
