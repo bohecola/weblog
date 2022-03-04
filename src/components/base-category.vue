@@ -6,7 +6,7 @@
       @click="handleCategoryClick(item._id, item.name)"
       class="category-item">
       <span class="category-item-text">{{item.name}}</span>
-      <span class="category-item-num">{{`(${item.count})`}}</span>
+      <span class="category-item-num">({{item.count}})</span>
     </li>
   </ul>
 </template>
