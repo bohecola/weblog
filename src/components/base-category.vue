@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { Router, useRouter } from 'vue-router';
 import { getCategoryList } from '@/api/common';
 import { ICategoryListItem } from '@/types';
@@ -24,7 +24,7 @@ export default defineComponent({
 
     let loading = ref(false);
 
-    onMounted(async() => {
+    onBeforeMount(async() => {
       try {
         loading.value = true;
         const res = await getCategoryList();

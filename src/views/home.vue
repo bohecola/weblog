@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref, toRefs } from 'vue';
 import { Router, useRouter } from 'vue-router';
 import { getArticleList } from '@/api/common';
 import { IGetArticleList } from '@/types';
@@ -48,7 +48,7 @@ export default defineComponent({
     });
 
     let loading = ref(false);
-    onMounted(async() => {
+    onBeforeMount(async() => {
       try {
         loading.value = true;
         const res = await getArticleList();

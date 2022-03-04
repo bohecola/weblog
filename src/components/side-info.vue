@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from 'vue';
+import { defineComponent, onBeforeMount, reactive } from 'vue';
 import { getUserInfo } from '@/api/common';
 import { IUserInfo } from '@/types';
 
@@ -35,7 +35,7 @@ export default defineComponent({
       desc: ''
     });
 
-    onMounted(async() => {
+    onBeforeMount(async() => {
       const res = await getUserInfo();
       Object.assign(userInfo, res);
     });

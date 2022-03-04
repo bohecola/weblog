@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { RouteLocationNormalizedLoaded, useRoute } from "vue-router";
 import { getArticleOne } from '@/api/common';
 import { IGetAritcleDetail } from '@/types';
@@ -49,7 +49,7 @@ export default defineComponent({
 
     const route: RouteLocationNormalizedLoaded = useRoute();
 
-    onMounted(async() => {
+    onBeforeMount(async() => {
       try {
         loading.value = true;
         const res = await getArticleOne(route.params.id as string);

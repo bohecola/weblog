@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref, toRefs, watch } from 'vue';
 import { Router, useRouter, RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { getArticleList } from '@/api/common';
 import { IGetArticleList } from '@/types';
@@ -71,7 +71,7 @@ export default defineComponent({
       fetchData(newVal);
     }, { deep: true });
 
-    onMounted(async() => {
+    onBeforeMount(async() => {
       loading.value = true;
       fetchData(route);
     });

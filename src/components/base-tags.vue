@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { getTagList } from '@/api/common';
 import { Router, useRouter } from 'vue-router';
 import { ITagDetail } from '@/types';
@@ -26,7 +26,7 @@ export default defineComponent({
     const pageData: Array<ITagDetail> = reactive([]);
     let loading = ref(false);
 
-    onMounted(async() => {
+    onBeforeMount(async() => {
       try {
         loading.value = true;
         const res = await getTagList();

@@ -42,7 +42,7 @@
 <script lang="ts">
 import { getArchiveList } from '@/api/common';
 import { IArchiveYearItem } from '@/types';
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { Router, useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -52,7 +52,7 @@ export default defineComponent({
     const pageData: Array<IArchiveYearItem> = reactive([]);
     
     let loading = ref(false);
-    onMounted(async() => {
+    onBeforeMount(async() => {
       try {
         loading.value = true;
         const res = await getArchiveList();
