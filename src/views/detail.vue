@@ -62,7 +62,7 @@ export default defineComponent({
     return {
       article,
       loading
-    }
+    };
   }
 });
 </script>
