@@ -70,15 +70,15 @@ export default defineComponent({
 <style lang="scss" scoped>
   .page-detail {
     &__head {
-      height: 64px;
+      height: 60px;
       margin-bottom: 16px;
       box-sizing: border-box;
       border-bottom: 1px solid #f2f2f2;
     }
     &__title {
       margin: 0;
-      font-size: 26px;
-      line-height: 26px;
+      font-size: 22px;
+      line-height: 22px;
       color: #333;
       font-weight: normal;
     }
