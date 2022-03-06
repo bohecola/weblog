@@ -81,8 +81,7 @@ export default defineComponent({
     &__container {
       position: relative;
       height: calc(100% - 70px);
-      width: 50%;
-      max-width: 960px;
+      width: 680px;
       margin: 0 auto;
       margin-bottom: 10px;
       box-sizing: border-box;
@@ -90,27 +89,30 @@ export default defineComponent({
     }
 
     &__view {
-      height: 100%;
       width: 100%;
+      height: 100%;
       padding: 20px;
-      overflow: hidden;
       box-sizing: border-box;
 
       & > div {
+        width: 100%;
         height: 100%;
+        padding-right: 10px;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
     }
     &__left, &__right {
       position: absolute;
       top: 0;
-      width: 300px;
+      width: 280px;
     }
 
     &__left {
       text-align: center;
       left: -10px;
       transform: translateX(-100%);
-      height: 350px;
+      height: 320px;
       background-color: #fff;
     }
 
@@ -123,7 +125,7 @@ export default defineComponent({
       }
       &-category {
         width: 100%;
-        height: 300px;
+        height: 260px;
         margin-bottom: 10px;
         background-color: #fff;
       }
@@ -137,7 +139,7 @@ export default defineComponent({
 
     @media only screen and (max-width: 992px) {
       .page-layout__container {
-        width: 100%
+        width: 100%;
       }
       .page-layout__left, .page-layout__right {
         display: none;

@@ -15,7 +15,7 @@
           <span class="article-tags" @click="$router.push({name: 'TagList', query: {tagId: tag._id, name: tag.name}})">
             {{ tag.name }}
           </span>
-          <span v-if="index + 1 !== article.tags.length">,</span>
+          <template v-if="index + 1 !== article.tags.length">,</template>
         </template>
       </div>
     </div>
@@ -108,17 +108,10 @@ export default defineComponent({
     &__content {
       height: calc(100% - 80px);
       word-break: break-all;
-      overflow-y: auto;
-      overflow-x: hidden;
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
     :deep(.vuepress-markdown-body:not(.custom)) {
       padding: 0;
-      img {
-        max-width: calc(100% - 16px);
-      }
+      img { max-width: calc(100% - 16px); }
     }
   }
 </style>

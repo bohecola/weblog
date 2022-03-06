@@ -54,7 +54,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .side-info {
-    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -63,7 +62,8 @@ export default defineComponent({
     box-sizing: border-box;
 
     &__avatar {
-      margin: 20px 0 10px;
+      margin-top: 20px;
+      margin-bottom: 10px;
       height: 80px;
       width: 80px;
       border-radius: 50%;
@@ -75,35 +75,27 @@ export default defineComponent({
       margin-bottom: 16px;
     }
 
-    &__social {
-      margin-bottom: 12px;
-      & > svg {
-        cursor: pointer;
-        font-size: 20px;
-        color: #999;
-        &:hover {
-          color: #666;
-        }
-      }
-    }
-
     &__desc {
       padding: 0 20px;
       font-size: 14px;
       color: #999;
     }
 
+    &__social {
+      margin-bottom: 12px;
+      & > svg {
+        font-size: 20px;
+        color: #999;
+        cursor: pointer;
+        &:hover { color: #666; }
+      }
+    }
+
     &__footer {
       margin-top: auto;
       font-size: 12px;
       color: #bbb;
-
-      & > p {
-        margin: 0;
-        &:first-of-type {
-          margin-bottom: 5px;
-        }
-      }
+      p { margin-top: 5px; }
     }
   }
 </style>

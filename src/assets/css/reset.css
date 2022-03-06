@@ -50,15 +50,13 @@ table {
 *::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;
-	border-radius: 3px;
 	background-color: rgba(144, 147, 153, 0.1);
 }
 
 *::-webkit-scrollbar-thumb {
-	border-radius: 3px;
 	background-color: rgba(144, 147, 153, 0.3);
 }
 
 *::-webkit-scrollbar-track {
-	background: transparent;
+	background-color: #eee;
 }
