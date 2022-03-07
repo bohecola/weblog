@@ -81,7 +81,7 @@ export default defineComponent({
     &__container {
       position: relative;
       height: calc(100% - 70px);
-      width: 680px;
+      width: 50%;
       margin: 0 auto;
       margin-bottom: 10px;
       box-sizing: border-box;
