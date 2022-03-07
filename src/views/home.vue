@@ -37,7 +37,7 @@ export default defineComponent({
     onBeforeMount(async() => {
       try {
         loading.value = true;
-        const res = await getArticleList();
+        const res = await getArticleList({ page: 1, limit: 15 });
         Object.assign(pageData, res);
         loading.value = false;
       } catch(err) {

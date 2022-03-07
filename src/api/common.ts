@@ -1,6 +1,7 @@
 import request from '@/service/request';
+import { IGetArticleListParams } from '@/types';
 
-export const getArticleList = (params?: unknown) => 
+export const getArticleList = (params?: IGetArticleListParams) => 
   request({
     url: '/articles',
     method: 'get',

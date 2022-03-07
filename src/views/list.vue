@@ -38,10 +38,10 @@ export default defineComponent({
     async function fetchData(route: RouteLocationNormalizedLoaded) {
       try {
         if (route.path.includes('category')) {
-          const res = await getArticleList({ 'category': route.query.categoryId });
+          const res = await getArticleList({ 'category': route.query.categoryId as string });
           Object.assign(pageData, res);
         } else if (route.path.includes('tag')) {
-          const res = await getArticleList({ 'tag': route.query.tagId });
+          const res = await getArticleList({ 'tag': route.query.tagId as string });
           Object.assign(pageData, res);
         }
         loading.value = false;

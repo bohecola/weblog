@@ -76,10 +76,18 @@ interface ICategoryListItem {
   count: number
 }
 
+interface IGetArticleListParams {
+  tag?: string
+  category?: string
+  page?: number
+  limit?: number
+}
+
 export {
   IUserInfo,
   IArticle,
   IGetArticleList,
+  IGetArticleListParams,
   IArchiveYearItem,
   IGetAritcleDetail,
   ICategoryDetail,
