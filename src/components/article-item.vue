@@ -8,7 +8,7 @@
       </div>
 
       <div class="article-item__category">
-        <el-icon><paperclip /></el-icon>
+        <el-icon><folder /></el-icon>
         {{ item.category }}
       </div>
       

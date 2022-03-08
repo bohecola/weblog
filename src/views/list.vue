@@ -75,11 +75,5 @@ export default defineComponent({
     font-size: 22px;
     color: #cc2a41;
   }
-
-  &__list {
-    height: calc(100% - 32px);
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
 }
 </style>

@@ -7,6 +7,16 @@
         :key="item._id"
         :item="item">
       </article-item>
+      <el-pagination
+        v-model:currentPage="currentPage"
+        background
+        class="custom-pagination"
+        layout="prev, pager, next"
+        :small="true"
+        :total="total"
+        :page-sizes="[10, 20, 50, 100]"
+        @current-change="handleCurrentChange">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -28,26 +38,42 @@ export default defineComponent({
       docs: [],
       total: 0,
       limit: 15,
-      page: 1,
-      pages: 1
+      page: 0,
+      pages: 0
     });
 
     let loading = ref(false);
 
-    onBeforeMount(async() => {
+    const query = reactive({
+      currentPage: 1,
+      pageSize: 10
+    });
+
+    onBeforeMount(() => {
+      getData();
+    });
+
+    const getData = async() => {
       try {
         loading.value = true;
-        const res = await getArticleList({ page: 1, limit: 15 });
+        const res = await getArticleList({ page: query.currentPage, limit: query.pageSize });
         Object.assign(pageData, res);
         loading.value = false;
       } catch(err) {
         loading.value = false;
       }
-    });
+    };
+
+    const handleCurrentChange = (val: number) => {
+      query.currentPage = val;
+      getData();
+    };
 
     return {
       ...toRefs(pageData),
-      loading
+      ...toRefs(query),
+      loading,
+      handleCurrentChange
     };
   }
 });
@@ -59,12 +85,6 @@ export default defineComponent({
     margin-bottom: 10px;
     font-size: 22px;
     color: #cc2a41;
-  }
-
-  &__list {
-    height: calc(100% - 32px);
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 }
 </style>

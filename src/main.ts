@@ -11,7 +11,7 @@ import './assets/css/common.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Calendar, Paperclip, PriceTag } from '@element-plus/icons-vue'
+import { Calendar, Folder, PriceTag } from '@element-plus/icons-vue';
 
 import VMdPreview from '@kangc/v-md-editor/lib/preview.js';
 import '@kangc/v-md-editor/lib/style/preview.css';
@@ -30,7 +30,7 @@ const app = createApp(App);
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.component('calendar', Calendar);
-app.component('paperclip', Paperclip);
+app.component('folder', Folder);
 app.component('price-tag', PriceTag);
 
 app.use(router);

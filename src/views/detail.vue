@@ -3,7 +3,7 @@
     <div v-if="!loading" class="page-detail__head">
       <h2 class="page-detail__title">{{ article.title }}</h2>
       <div class="page-detail__info">
-        <el-icon v-if="article.category"><paperclip /></el-icon>
+        <el-icon v-if="article.category"><folder /></el-icon>
         <span
           @click="$router.push({name: 'CategoryList', query: {categoryId: article.category._id, name: article.category.name}})"
           class="article-category">

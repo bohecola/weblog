@@ -60,11 +60,11 @@ export default defineComponent({
     overflow-x: hidden;
     overflow-y: auto;
     .year-wrap {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       &:last-child { margin-bottom: 0; }
     }
     .month-wrap {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       &:last-child { margin-bottom: 0; }
     }
     &__year {
