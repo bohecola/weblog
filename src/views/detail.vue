@@ -15,7 +15,7 @@
           <span class="article-tags" @click="$router.push({name: 'TagList', query: {tagId: tag._id, name: tag.name}})">
             {{ tag.name }}
           </span>
-          <template v-if="index + 1 !== article.tags.length">,</template>
+          {{ index + 1 !== article.tags.length ? ',' : '' }}
         </template>
       </div>
     </div>
@@ -70,24 +70,23 @@ export default defineComponent({
 <style lang="scss" scoped>
   .page-detail {
     &__head {
-      height: 60px;
+      padding-bottom: 8px;
       margin-bottom: 16px;
       box-sizing: border-box;
       border-bottom: 1px solid #f2f2f2;
     }
     &__title {
-      margin: 0;
       font-size: 22px;
       line-height: 22px;
       color: #333;
       font-weight: normal;
+      margin-bottom: 14px;
     }
 
     &__info {
       display: flex;
       align-items: center;
       font-weight: lighter;
-      margin-top: 14px;
       font-size: 14px;
       line-height: 14px;
       color: #999;
