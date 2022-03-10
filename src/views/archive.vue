@@ -24,7 +24,7 @@
 import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { getArchiveList } from '@/api/common';
 import { IArchiveYearItem } from '@/types';
-import ArticleItem from '@/components/article-item.vue';
+import ArticleItem from '@/components/ArticleList/item.vue';
 
 export default defineComponent({
   name: 'archive',

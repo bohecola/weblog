@@ -37,7 +37,7 @@ export default defineComponent({
 
     const router: Router = useRouter();
     const handleCategoryClick = (categoryId: string, name: string) => {
-      router.push({ name: 'CategoryList', query: { categoryId, name } });
+      router.push({ name: 'ArticleList', query: { categoryId, categoryName: name } });
     };
 
     return {

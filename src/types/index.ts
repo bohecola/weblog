@@ -77,10 +77,10 @@ interface ICategoryListItem {
 }
 
 interface IGetArticleListParams {
-  tag?: string
-  category?: string
-  page?: number
-  limit?: number
+  tagId?: null | string
+  categoryId?: null | string
+  page?: null | number
+  limit?: null | number
 }
 
 export {

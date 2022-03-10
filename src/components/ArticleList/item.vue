@@ -32,7 +32,10 @@ import { IArticle } from '@/types';
 export default defineComponent({
   name: 'article-item',
   props: {
-    item: Object as PropType<IArticle>
+    item: {
+      type: Object as PropType<IArticle>,
+      default: () => ({})
+    }
   },
   setup() {
     const router: Router = useRouter();

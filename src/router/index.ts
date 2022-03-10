@@ -22,13 +22,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/tag.vue')
       },
       {
-        name: 'CategoryList',
-        path: '/category',
-        component: () => import('@/views/list.vue')
-      },
-      {
-        name: 'TagList',
-        path: '/tag',
+        name: 'ArticleList',
+        path: '/articles',
         component: () => import('@/views/list.vue')
       },
       {

@@ -40,7 +40,7 @@ export default defineComponent({
     const router: Router = useRouter();
 
     const handleTagClick = (tagId: string, name: string) => {
-      router.push({ name: 'TagList', query: { tagId, name } });
+      router.push({ name: 'ArticleList', query: { tagId, tagName: name } });
     }
 
     return {
