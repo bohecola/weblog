@@ -1,6 +1,5 @@
 <template>
   <div class="page-home">
-    <div class="page-home__tip-board">最近</div>
     <article-list></article-list>
   </div>
 </template>
@@ -17,13 +16,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.page-home {
-  &__tip-board {
-    margin-bottom: 10px;
-    font-size: 22px;
-    color: #cc2a41;
-  }
-}
-</style>

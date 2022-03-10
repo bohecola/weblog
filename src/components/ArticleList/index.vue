@@ -1,5 +1,6 @@
 <template>
-  <div class="article-list">
+  <div v-loading="loading" class="article-list">
+    <div class="tip-board">{{ title }}</div>
     <article-item
       v-for="item of docs"
       :key="item._id"
@@ -18,7 +19,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, reactive, toRefs, onMounted, watch } from 'vue';
+import { defineComponent, ref, reactive, toRefs, onMounted, watch, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { getArticleList } from '@/api/common';
 import { IGetArticleList } from '@/types';
@@ -45,17 +46,30 @@ export default defineComponent({
 
     const route = useRoute();
 
+    const title = computed(() => {
+      const hasQuery = Object.keys(route.query).length > 0;
+      
+      if (hasQuery) {
+        if (route.query.categoryName) {
+          return route.query.categoryName;
+        }
+
+        if (route.query.tagName) {
+          return route.query.tagName;
+        }
+      }
+      return '最近';
+    });
+
     watch(() => route.path, (newVal, oldVal) => {
-      if (newVal !== oldVal) {
-        console.log(1);
-      } else {
+      if (newVal === oldVal) {
         fetchData();
       }
     }, { deep: true });
 
     const query = reactive({
       currentPage: 1,
-      pageSize: 10
+      pageSize: 6
     });
     
     let loading = ref(false);
@@ -83,12 +97,10 @@ export default defineComponent({
     return {
       ...toRefs(pageData),
       ...toRefs(query),
+      title,
+      loading,
       handleCurrentChange
     };
   }
 });
 </script>
-
-<style lang='scss' scoped>
-
-</style>

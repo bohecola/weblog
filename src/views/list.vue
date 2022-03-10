@@ -1,5 +1,7 @@
 <template>
-  <article-list></article-list>
+  <div class="page-list">
+    <article-list></article-list>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,13 +15,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.page-list {
-  &__tip-board {
-    margin-bottom: 10px;
-    font-size: 22px;
-    color: #cc2a41;
-  }
-}
-</style>

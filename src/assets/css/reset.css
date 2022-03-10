@@ -48,8 +48,8 @@ table {
 }
 
 *::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+	width: .375rem;
+	height: .375rem;
 	background-color: rgba(144, 147, 153, 0.1);
 }
 

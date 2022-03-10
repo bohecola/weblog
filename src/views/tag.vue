@@ -1,5 +1,5 @@
 <template>
-  <base-tags></base-tags>
+  <base-tags />
 </template>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <base-category></base-category>
+  <base-category />
 </template>
 
 <script lang="ts">

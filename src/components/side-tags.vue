@@ -1,6 +1,6 @@
 <template>
   <div class="mt-10">标签</div>
-  <base-tags></base-tags>
+  <base-tags />
 </template>
 
 <script lang="ts">
